@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-black text-gray-300">
       <div className="max-w-7xl mx-auto px-6 py-12">
 
         {/* Top Section */}
@@ -18,21 +20,21 @@ export default function Footer() {
 
             {/* Social Icons */}
             <div className="flex gap-4 mt-6">
-              <a href="#" className="hover:text-white transition">
+              <Link href="#" className="hover:text-white transition">
                 LinkedIn
-              </a>
+              </Link>
 
-              <a href="#" className="hover:text-white transition">
+              <Link href="#" className="hover:text-white transition">
                 Instagram
-              </a>
+              </Link>
 
-              <a href="#" className="hover:text-white transition">
+              <Link href="#" className="hover:text-white transition">
                 X
-              </a>
+              </Link>
 
-              <a href="#" className="hover:text-white transition">
+              <Link href="#" className="hover:text-white transition">
                 Facebook
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -44,19 +46,19 @@ export default function Footer() {
 
             <ul className="space-y-3 text-sm">
               <li>
-                📧 support@sherehesasa.com
+                 support@sherehesasa.com
               </li>
 
               <li>
-                📞 Mobile (Kenya): (+254) 745 119 657
+                Mobile (Kenya): (+254) 745 119 657
               </li>
 
               <li>
-                🌍 Mobile (International): (+254)745 119 657
+                Mobile (International): (+254)745 119 657
               </li>
 
               <li>
-                💬 WhatsApp (Global): (+254) 745 119 657
+                 WhatsApp (Global): (+254) 745 119 657
               </li>
             </ul>
           </div>
@@ -69,27 +71,27 @@ export default function Footer() {
 
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="/about" className="hover:text-white">
+                <Link href="/about" className="hover:text-white">
                   About Us
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="/" className="hover:text-white">
+                <Link href="/" className="hover:text-white">
                   ShereheSasa
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="/events" className="hover:text-white">
+                <Link href="/events" className="hover:text-white">
                   Explore Events
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="/contact" className="hover:text-white">
+                <Link href="/contact" className="hover:text-white">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -102,27 +104,27 @@ export default function Footer() {
 
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="/pricing" className="hover:text-white">
+                <Link href="/pricing" className="hover:text-white">
                   Pricing
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="/blog" className="hover:text-white">
+                <Link href="/blog" className="hover:text-white">
                   Blog
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="/terms" className="hover:text-white">
+                <Link href="/terms" className="hover:text-white">
                   Terms of Use
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="/privacy" className="hover:text-white">
+                <Link href="/privacy" className="hover:text-white">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -136,13 +138,13 @@ export default function Footer() {
           </p>
 
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="/terms" className="hover:text-white">
+            <Link href="/terms" className="hover:text-white">
               Terms
-            </a>
+            </Link>
 
-            <a href="/privacy" className="hover:text-white">
+            <Link href="/privacy" className="hover:text-white">
               Privacy
-            </a>
+            </Link>
           </div>
 
         </div>

@@ -1,11 +1,7 @@
 export default function Hero() {
   return (
-    <section
-      className="relative h-screen w-full bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: "url('/media/image.jpeg')",
-      }}
-    >
+    <section className="relative h-screen w-full bg-[url('/media/image.jpeg')] bg-cover bg-center bg-no-repeat">
+
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/50"></div>
 
@@ -16,7 +12,7 @@ export default function Hero() {
             Discover Extraordinary Events
           </h1>
 
-          <p className="mt-6 text-lg md:text-xl font-family: var(--font-mono);">
+          <p className="mt-6 text-lg font-mono md:text-xl">
             Your trusted partner for unforgettable experiences. Explore events
             or launch your own with ShereheSasa.
           </p>
