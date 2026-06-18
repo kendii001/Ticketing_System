@@ -25,6 +25,8 @@ export default function Hero() {
             <button className="rounded-lg border border-white px-8 py-3 font-semibold hover:bg-white hover:text-black">
               Launch An Event
             </button>
+            
+
           </div>
         </div>
       </div>

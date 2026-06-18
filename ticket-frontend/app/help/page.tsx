@@ -50,7 +50,7 @@ export default function Help() {
         </div>
       </div>
       <div className="bg-green-50 rounded-lg shadow-md p-20 m-10">
-        <p>Didn't find any solutions?
+        <p>Did not find any solutions?
 Talk to our world class customer support agents. They are always available and ready to help.</p>
       </div>
 

@@ -5,8 +5,6 @@ export default function About() {
   return (
     <div>
       <Navbar/>
-     
-    
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-10 items-center">
 
       {/* Left Side */}
@@ -27,22 +25,23 @@ export default function About() {
         </p>
       </div>
 
-<GoogleAnalytics />
-
-<div className="flex justify-center">
-  <img
-    src="/media/image2.jpeg"
-    alt="About Us Image"
-    className="w-250 h-100 object-cover rounded-lg shadow-md"
-  />
-</div>
     </div>
+    <GoogleAnalytics />
+
+    <div className="flex justify-center">
+      <img
+        src="/media/image2.jpeg"
+        alt="About Us Image"
+        className="w-250 h-100pxobject-cover rounded-lg shadow-md"
+      />
+    </div>
+
     <div className="flex flex-col items-center justify-center bg-gray-100 py-10 px-6 text-center">
       <h1 className="text-2xl font-bold text-gray-800">Our Mission</h1>
       <p className="text-gray-600 leading-relaxed">
-        Our mission is to empower event organizers with a comprehensive <br></br>
-         platform that simplifies the event planning process, enhances attendee engagement, <br></br>
-         and drives successful events. We aim to be the go-to solution for event management,<br></br>
+        Our mission is to empower event organizers with a comprehensive <br />
+         platform that simplifies the event planning process, enhances attendee engagement, <br />
+         and drives successful events. We aim to be the go-to solution for event management,<br />
           providing tools and resources that enable our customers to create unforgettable experiences.
       </p>
     </div>
@@ -63,8 +62,108 @@ export default function About() {
   </ul>
 
 </div>
-    
-<Footer/>
+<div>
+  
+
+
+<div className="w-full overflow-hidden py-8 flex">
+      {/* Moving Track */}
+      <div className="flex gap-6 animate-marquee-infinite hover:[animation-play-state:paused] shrink-0">
+
+        {/* SET 1 */}
+        <div className="relative w-60 h-60 rounded-lg overflow-hidden shadow-md">
+          <img
+            src="/media/image2.jpeg"
+            alt="Family Event"
+            
+            className="object-cover"
+           
+          />
+        </div>
+
+        <div className="relative w-60 h-60 rounded-lg overflow-hidden shadow-md">
+          <img
+            src="/media/image1.jpeg"
+            alt="Education Expo"
+            
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative w-60 h-60 rounded-lg overflow-hidden shadow-md">
+          <img
+            src="/media/image1.jpeg"
+            alt="Education Expo"
+            
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative w-60 h-60 rounded-lg overflow-hidden shadow-md">
+          <img
+            src="/media/image.jpeg"
+            alt="Charity Drive"
+            
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative w-60 h-60 rounded-lg overflow-hidden shadow-md">
+          <img
+            src="/media/image3.jpeg"
+            alt="Live Concert"
+            
+            className="object-cover"
+          />
+        </div>
+
+        {/* SET 2 (loop duplicates) */}
+        <div className="relative w-60 h-60 rounded-lg overflow-hidden shadow-md">
+          <img
+            src="/media/image2.jpeg"
+            alt=""
+            aria-hidden="true"
+            
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative w-60 h-60 rounded-lg overflow-hidden shadow-md">
+          <img
+            src="/media/image1.jpeg"
+            alt=""
+            aria-hidden="true"
+            
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative w-60 h-60 rounded-lg overflow-hidden shadow-md">
+          <img
+            src="/media/image.jpeg"
+            alt=""
+            aria-hidden="true"
+            
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative w-60 h-60 rounded-lg overflow-hidden shadow-md">
+          <img
+            src="/media/image3.jpeg"
+            alt=""
+            aria-hidden="true"
+            
+            className="object-cover"
+          />
+        </div>
+
+      </div>
+    </div>
+
+</div>
+
+    <Footer/>
     </div>
   );
 }
