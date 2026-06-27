@@ -47,11 +47,11 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/launch-event"
-              className="px-5 py-2.5 rounded-lg bg-gray-600 text-white font-semibold hover:bg-indigo-700 transition"
-            >
-              Launch An Event
-            </Link>
+            href="/contact"
+            className="px-5 py-2.5 rounded-lg bg-gray-600 text-white font-semibold hover:bg-indigo-700 transition"
+          >
+            Launch An Event
+          </Link>
           </div>
 
           {/* Mobile Button */}

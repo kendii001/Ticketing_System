@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import Link from "next/link";
+
 export default function Blog() {
   return (
     <>
@@ -11,7 +11,7 @@ export default function Blog() {
         <h1 className="text-3xl font-bold mb-6">Blog</h1>
 
         {/* Main Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-10">
 
           {/* Image */}
           <Image src="/media/image4.jpeg" alt="Blog Image" className="w-full h-300px object-cover rounded-lg shadow-md"
@@ -48,16 +48,24 @@ export default function Blog() {
                 <li>Poor event visibility</li>
                 <li>Lack of centralized event listings</li>
               </ul>
-                        <Link
-            href="/blog/Article1"
-            className="ml-2 text-[#92278f] font-semibold hover:underline"
-          >
-            Read More →
-          </Link>
+                       
             </div>
 
           </div>
         </div>
+           <h2 className="text-2xl font-bold mb-10">Benefits</h2>
+
+          <p>
+            The platform reduces fraud, shortens entry queues, improves event
+            visibility, and gives organizers complete control over ticket sales
+            and attendee management.
+          </p>
+
+          <p>
+            Whether youre hosting a music concert, conference, sports event,
+            university function, or festival, Sherehe Sasa simplifies the entire
+            ticketing process from event creation to attendee check-in.
+          </p>
       </div>
 
       <Footer />
