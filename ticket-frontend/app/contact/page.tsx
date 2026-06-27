@@ -8,68 +8,64 @@ export default function ContactPage() {
     <>
       <Navbar />
 
-      <section className="bg-[#CC338B] py-20 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start text-white">
+      <section className="bg-[#CC338B] py-14 md:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-          
-          <div>
-            <h1 className="text-5xl font-bold text-white mb-6 hover:text-cyan-400 transition duration-300">
+          {/* Left Section */}
+          <div className="text-white">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 hover:text-cyan-400 transition duration-300">
               Contact Us
             </h1>
 
-            <p className="text-white text-lg leading-8 ">
+            <p className="text-base md:text-lg leading-7 md:leading-8 mb-4">
               Ready to roll? Drop us a message and one of our account managers
               will reach out shortly to get your account set up and live in no
               time!
             </p>
 
-            <p className="text-white text-lg leading-8 ">
+            <p className="text-base md:text-lg leading-7 md:leading-8 mb-8">
               Prefer to explore on your own? Click here to check out our apps
               your way.
             </p>
 
-            <div>
+            <div className="space-y-6">
 
               <div>
-                <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                <p className="text-white">
+                <h3 className="font-semibold text-white text-lg">Email</h3>
+                <p className="text-gray-100 break-all">
                   support@ShereheSasa.com
                 </p>
               </div>
 
               <div>
-                <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                <p className="text-white">
+                <h3 className="font-semibold text-white text-lg">Phone</h3>
+                <p className="text-gray-100">
                   +254 745 119657
                 </p>
               </div>
 
               <div>
-                <h3 className="font-semibold text-gray-900 mb-1">Office</h3>
-                <p className="text-white leading-7">
-                  Nairobi, Kenya
-                  <br />
-                  Sherehe Sasa Headquarters
-                  <br />
-                  123 Event Street,
-                  <br />
-                  7th Floor,
-                  <br />
-                  P.O. Box 348,
-                  <br />
-                  Nairobi, 00900,
-                  <br />
+                <h3 className="font-semibold text-white text-lg">Office</h3>
+
+                <p className="text-gray-100 leading-7">
+                  Nairobi, Kenya <br />
+                  Sherehe Sasa Headquarters <br />
+                  123 Event Street <br />
+                  7th Floor <br />
+                  P.O. Box 348 <br />
+                  Nairobi, 00900 <br />
                   Kenya
                 </p>
+
               </div>
 
             </div>
           </div>
 
-          {/* Right Side */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
+          {/* Right Section */}
+          <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 w-full">
 
-            <form className="space-y-6">
+            <form className="space-y-5">
 
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
@@ -79,7 +75,7 @@ export default function ContactPage() {
                 <input
                   type="text"
                   placeholder="Enter your full name"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#CC338B]"
                 />
               </div>
 
@@ -91,7 +87,7 @@ export default function ContactPage() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#CC338B]"
                 />
               </div>
 
@@ -103,13 +99,13 @@ export default function ContactPage() {
                 <textarea
                   rows={6}
                   placeholder="Write your message..."
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm md:text-base resize-none focus:outline-none focus:ring-2 focus:ring-[#CC338B]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-indigo-600 hover:bg-indigo-700 transition text-white font-semibold py-3 rounded-lg"
+                className="w-full bg-[#CC338B] hover:bg-[#b02d78] transition duration-300 text-white font-semibold py-3 rounded-lg"
               >
                 Submit
               </button>
