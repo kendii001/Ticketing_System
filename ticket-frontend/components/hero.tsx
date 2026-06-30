@@ -1,5 +1,4 @@
-
-
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -24,15 +23,19 @@ export default function Hero() {
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
 
-            <link
-             className="w-full sm:w-auto rounded-lg bg-indigo-600 px-8 py-3 font-semibold transition hover:bg-indigo-700">
+            <Link
+              href="/events"
+              className="w-full sm:w-auto rounded-lg bg-indigo-600 px-8 py-3 font-semibold transition hover:bg-indigo-700"
+            >
               Explore Events
-            </link>
+            </Link>
 
-            <link
-            className="w-full sm:w-auto rounded-lg border border-white px-8 py-3 font-semibold transition hover:bg-white hover:text-black">
+            <Link
+              href="/create-event"
+              className="w-full sm:w-auto rounded-lg border border-white px-8 py-3 font-semibold transition hover:bg-white hover:text-black"
+            >
               Launch An Event
-            </link>
+            </Link>
 
           </div>
 
