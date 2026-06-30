@@ -1,3 +1,6 @@
+
+
+
 export default function Hero() {
   return (
     <section
@@ -21,13 +24,15 @@ export default function Hero() {
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
 
-            <button className="w-full sm:w-auto rounded-lg bg-indigo-600 px-8 py-3 font-semibold transition hover:bg-indigo-700">
+            <link
+             className="w-full sm:w-auto rounded-lg bg-indigo-600 px-8 py-3 font-semibold transition hover:bg-indigo-700">
               Explore Events
-            </button>
+            </link>
 
-            <button className="w-full sm:w-auto rounded-lg border border-white px-8 py-3 font-semibold transition hover:bg-white hover:text-black">
+            <link
+            className="w-full sm:w-auto rounded-lg border border-white px-8 py-3 font-semibold transition hover:bg-white hover:text-black">
               Launch An Event
-            </button>
+            </link>
 
           </div>
 
