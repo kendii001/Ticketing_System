@@ -31,7 +31,7 @@ export default function Hero() {
             </Link>
 
             <Link
-              href="/create-event"
+              href="/contact"
               className="w-full sm:w-auto rounded-lg border border-white px-8 py-3 font-semibold transition hover:bg-white hover:text-black"
             >
               Launch An Event
