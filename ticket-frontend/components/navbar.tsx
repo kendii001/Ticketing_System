@@ -91,7 +91,7 @@ export default function Navbar() {
             <Link href="/events" className="block text-indigo-600 font-semibold">
               Explore Events
             </Link>
-            <Link href="/launch-event" className="block text-gray-700 font-semibold">
+            <Link href="/contact" className="block text-gray-700 font-semibold">
               Launch An Event
             </Link>
           </div>

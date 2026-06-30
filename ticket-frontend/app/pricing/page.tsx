@@ -218,8 +218,10 @@ export default function Pricing() {
                   </span>
                 </div>
               </div>
+            
             )}
           </div>
+          
         </section>
       </main>
     </div>

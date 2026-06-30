@@ -24,7 +24,7 @@ body {
   color: var(--foreground);
   font-family: monospace;
   font-size: 16px;
-cursor:crosshair;
+cursor:pointer;
 }
 @keyframes marquee {
   0% {
