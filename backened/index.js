@@ -3,6 +3,7 @@ import cors from "cors";
 
 import "./db.js";
 import pricingRoutes from "./routes/pricingRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
 
 const app = express();
 const port = 5000;
@@ -25,7 +26,7 @@ app.get("/", (req, res) => {
     message: "Ticketing API is running 🚀",
   });
 });
-
+app.use("/api/contact", contactRoutes);
 // Pricing Routes
 app.use("/pricing", pricingRoutes);
 

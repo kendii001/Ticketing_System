@@ -2,6 +2,7 @@ import {
   getAllPricing,
   getPricingByCountry,
   calculatePricingData,
+
 } from "../models/pricingModel.js";
 
 // GET /pricing
@@ -60,5 +61,9 @@ export const calculatePricing = async (req, res) => {
     res.status(500).json({
       message: "Server error.",
     });
+
+
+
+
   }
 };

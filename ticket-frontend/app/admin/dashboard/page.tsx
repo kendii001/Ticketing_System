@@ -33,7 +33,7 @@ export default function Dashboard() {
           </h1>
 
           <p className="text-gray-600 mt-2">
-            Welcome back! Here's what's happening on ShereheSasa.
+            Welcome back! Heres whats happening on ShereheSasa.
           </p>
         </div>
 
