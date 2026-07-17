@@ -7,6 +7,7 @@ export default function CreateEventPage() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
+  const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   const [event, setEvent] = useState({
     title: "",
@@ -37,7 +38,7 @@ export default function CreateEventPage() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/events", {
+      const response = await fetch(`${API}/api/events`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,9 +52,9 @@ export default function CreateEventPage() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        alert("🎉 Event created successfully!");
+        alert("🎉 Event submitted for approval.");
 
-        router.push("/organizer/dashboard");
+        router.push("/organisers/dashboard");
       } else {
         alert(data.message || "Failed to create event.");
       }

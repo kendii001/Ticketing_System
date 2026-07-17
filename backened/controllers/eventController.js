@@ -1,4 +1,5 @@
 import Event from "../models/EventModel.js";
+import Pending from "../models/PendingModel.js";
 
 export const createEvent = async (req, res) => {
   const { title, eventDate } = req.body;
@@ -42,6 +43,16 @@ export const getEvents = async (req, res) => {
       success: false,
       message: "Failed to fetch events.",
     });
+  }
+};
+
+export const getPendingEvents = async (req, res) => {
+  try {
+    const events = await Pending.getPendingEvents();
+    res.json({ success: true, events });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Failed to fetch pending events." });
   }
 };
 

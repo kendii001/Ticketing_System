@@ -15,7 +15,7 @@ export default function PendingEventsPage() {
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const API = process.env.NEXT_PUBLIC_API_URL;
+  const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   const fetchPending = async () => {
     setLoading(true);

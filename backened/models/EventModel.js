@@ -1,4 +1,4 @@
-const pool = ("../db");
+import pool from "../db.js";
 
 const Event = {
   async create({
@@ -11,18 +11,19 @@ const Event = {
     price,
     organizerName,
     imageUrl,
+    status,
   }) {
     const result = await pool.query(
       `INSERT INTO events
-        (title, description, category, event_date, event_time, venue, price, organizer_name, image_url)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        (title, description, category, event_date, event_time, venue, price, organizer_name, image_url, status)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
        RETURNING *`,
-      [title, description, category, eventDate, eventTime, venue, price, organizerName, imageUrl]
+      [title, description, category, eventDate, eventTime, venue, price, organizerName, imageUrl, status || "pending"]
     );
     return result.rows[0];
   },
 
-  async findAll({ q, country, category, date }) {
+  async findAll({ q, country, category, date, status }) {
     let query = `SELECT * FROM events WHERE 1=1`;
     const values = [];
     let i = 1;
@@ -45,6 +46,11 @@ const Event = {
     if (date) {
       query += ` AND event_date = $${i++}`;
       values.push(date);
+    }
+
+    if (status) {
+      query += ` AND status = $${i++}`;
+      values.push(status);
     }
 
     query += ` ORDER BY created_at DESC`;

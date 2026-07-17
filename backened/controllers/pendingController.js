@@ -1,4 +1,4 @@
-import Pending from "../models/Pending.js";
+import Pending from "../models/PendingModel.js";
 
 // Events
 export const getPendingEvents = async (req, res) => {

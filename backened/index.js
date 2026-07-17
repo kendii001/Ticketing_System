@@ -43,3 +43,5 @@ app.listen(port, "0.0.0.0", () => {
   console.log(` Backend running at http://localhost:${port}`);
   console.log(` Network: http://192.168.1.199:${port}`);
 });
+
+export default app;

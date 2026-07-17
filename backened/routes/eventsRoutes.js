@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/events", eventController.createEvent);
 router.get("/events", eventController.getEvents);
+router.get("/events/pending", eventController.getPendingEvents);
 router.get("/events/:id", eventController.getEventById);
 router.put("/events/:id", eventController.updateEvent);
 router.patch("/events/:id/approve", eventController.approveEvent);
