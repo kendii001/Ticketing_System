@@ -1,13 +1,11 @@
 import pool from "../db.js";
 
-
-
 const createContact = async (fullName, email, message) => {
     const result = await pool.query(
         `
         INSERT INTO contact_messages
         (full_name, email, message)
-        VALUES ($1,$2,$3)
+        VALUES ($1, $2, $3)
         RETURNING *
         `,
         [fullName, email, message]
@@ -33,7 +31,7 @@ const getContactById = async (id) => {
         `
         SELECT *
         FROM contact_messages
-        WHERE id=$1
+        WHERE id = $1
         `,
         [id]
     );
@@ -45,8 +43,8 @@ const markAsRead = async (id) => {
     const result = await pool.query(
         `
         UPDATE contact_messages
-        SET is_read=true
-        WHERE id=$1
+        SET is_read = true
+        WHERE id = $1
         RETURNING *
         `,
         [id]
@@ -55,7 +53,7 @@ const markAsRead = async (id) => {
     return result.rows[0];
 };
 
-module.exports = {
+export default {
     createContact,
     getAllContacts,
     getContactById,

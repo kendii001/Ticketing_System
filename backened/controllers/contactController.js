@@ -1,4 +1,4 @@
-const contactModel = require("../models/contactModel");
+import contactModel from "../models/contactModel.js";
 
 const createContact = async (req, res) => {
     try {
@@ -93,7 +93,7 @@ const markRead = async (req, res) => {
     }
 };
 
-module.exports = {
+export {
     createContact,
     getContacts,
     getContact,

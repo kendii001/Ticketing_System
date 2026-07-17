@@ -4,7 +4,9 @@ import cors from "cors";
 import "./db.js";
 import pricingRoutes from "./routes/pricingRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
-
+import pendingRoutes from "./routes/pendingRoutes.js";
+import eventRoutes from "./routes/eventsRoutes.js";
+import adminRoutes from "./routes/admin.js";
 const app = express();
 const port = 5000;
 
@@ -26,7 +28,13 @@ app.get("/", (req, res) => {
     message: "Ticketing API is running 🚀",
   });
 });
+app.use("/api", eventRoutes);
+app.use("/api", adminRoutes);
+
+app.use("/api", pendingRoutes);
 app.use("/api/contact", contactRoutes);
+app.use("/api", eventRoutes);
+
 // Pricing Routes
 app.use("/pricing", pricingRoutes);
 
