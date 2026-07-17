@@ -13,10 +13,8 @@ const port = 5000;
 // Middleware
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "http://192.168.1.199:3000",
-    ],
+    origin: true,
+    credentials: true,
   })
 );
 

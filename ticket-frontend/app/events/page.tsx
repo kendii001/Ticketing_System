@@ -53,18 +53,16 @@ function EventContent() {
   ];
 
   const categories = [
-    { name: "All Categories<<" },
-    { name: "concert & live Music" },
+    { name: "All Categories" },
+    { name: "Music" },
     { name: "Art & Culture" },
-    { name: "Business"},
-    { name: "Sports"},
-    { name: "Film,Theatre &performing Arts" },
-    { name: "Comedy"},
-    { name: "Festivals"},
-    { name: "Networking & Conferences" },
-    { name: "Food&Drinks" },
-    { name: "Health & Wellness" },
-    { name: "Charity & Causes" },
+    { name: "Business" },
+    { name: "Sports" },
+    { name: "Theatre" },
+    { name: "Comedy" },
+    { name: "Festivals" },
+    { name: "Conferences" },
+    { name: "Family" },
   ];
 
   const fetchEvents = async (params: URLSearchParams) => {
@@ -182,7 +180,6 @@ function EventContent() {
               href={`/events?category=${encodeURIComponent(category.name)}`}
               className="flex items-center gap-2 text-gray-700 hover:text-pink-600 font-medium transition shrink-0"
             >
-              {category.icon && <span className="text-lg">{category.icon}</span>}
               <span>{category.name}</span>
             </Link>
           ))}

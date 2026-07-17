@@ -31,8 +31,11 @@ export default function ContactPage() {
     setSuccessMessage("");
     setErrorMessage("");
 
+    const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
+    const contactUrl = apiBaseUrl ? `${apiBaseUrl}/api/contact` : "/api/contact";
+
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
+      const res = await fetch(contactUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,8 +56,8 @@ export default function ContactPage() {
         setErrorMessage(data.message || "Failed to send message.");
       }
     } catch (error) {
-      console.error(error);
-      setErrorMessage("Unable to connect to the server.");
+      console.error("Contact form submission failed:", error);
+      setErrorMessage("Unable to connect to the server. Please check the API configuration.");
     } finally {
       setLoading(false);
     }
