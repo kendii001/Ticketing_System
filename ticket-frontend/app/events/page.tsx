@@ -6,7 +6,6 @@ import { Search, CalendarIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { format } from "date-fns";
 
-import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -147,11 +146,9 @@ function EventContent() {
           </select>
 
           <Popover>
-            <PopoverTrigger>
-              <Button variant="outline" className="justify-start lg:w-60">
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : "Select Date"}
-              </Button>
+            <PopoverTrigger className="inline-flex items-center justify-start rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-50 lg:w-60">
+              <CalendarIcon className="mr-2 h-4 w-4" />
+              {date ? format(date, "PPP") : "Select Date"}
             </PopoverTrigger>
 
             <PopoverContent className="w-auto p-0">

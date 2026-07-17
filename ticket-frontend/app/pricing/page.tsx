@@ -34,8 +34,10 @@ export default function Pricing() {
       setLoading(true);
       setErrorMessage("");
 
+      const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
+      const apiUrl = apiBaseUrl ? `${apiBaseUrl}/pricing/${encodeURIComponent(country)}` : `/pricing/${encodeURIComponent(country)}`;
+
       try {
-        const apiUrl = `http://localhost:5000/pricing/${encodeURIComponent(country)}`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
@@ -67,12 +69,14 @@ export default function Pricing() {
     try {
       setCalculating(true);
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pricing/calculate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ country, amount: Number(amount) }),
-    });
+      const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
+      const apiUrl = apiBaseUrl ? `${apiBaseUrl}/pricing/calculate` : "/pricing/calculate";
 
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ country, amount: Number(amount) }),
+      });
 
       const data = await response.json();
 
