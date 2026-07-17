@@ -131,6 +131,8 @@ export default function CreateEventPage() {
                 <option>Business</option>
                 <option>Education</option>
                 <option>Technology</option>
+                <option>Health & Wellness</option>
+                <option>Charity & Causes</option>
               </select>
             </div>
 

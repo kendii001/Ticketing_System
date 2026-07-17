@@ -53,16 +53,18 @@ function EventContent() {
   ];
 
   const categories = [
-    { name: "All Categories" },
-    { name: "Music", icon: "🎵" },
-    { name: "Art & Culture", icon: "🎨" },
-    { name: "Business", icon: "💼" },
-    { name: "Sports", icon: "⚽" },
-    { name: "Theatre", icon: "🎭" },
-    { name: "Comedy", icon: "😂" },
-    { name: "Festivals", icon: "🎉" },
-    { name: "Conferences", icon: "🎓" },
-    { name: "Family", icon: "❤️" },
+    { name: "All Categories<<" },
+    { name: "concert & live Music" },
+    { name: "Art & Culture" },
+    { name: "Business"},
+    { name: "Sports"},
+    { name: "Film,Theatre &performing Arts" },
+    { name: "Comedy"},
+    { name: "Festivals"},
+    { name: "Networking & Conferences" },
+    { name: "Food&Drinks" },
+    { name: "Health & Wellness" },
+    { name: "Charity & Causes" },
   ];
 
   const fetchEvents = async (params: URLSearchParams) => {
