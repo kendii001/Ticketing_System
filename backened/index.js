@@ -13,7 +13,14 @@ const port = 5000;
 // Middleware
 app.use(
   cors({
-    origin: true,
+    origin: [
+      "http://localhost:3000",
+      "http://192.168.1.199:3000",
+      "https://ticketing-system.vercel.app",
+      "https://www.ticketing-system.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
