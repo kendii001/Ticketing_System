@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://ticketing-system-n41q.onrender.com";
 
 export const getEvents = async (params?: URLSearchParams | string) => {
   const queryString = params ? `?${params.toString()}` : "";
