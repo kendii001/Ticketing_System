@@ -1,27 +1,24 @@
-import pkg from "pg";
+import pg from "pg";
+import dotenv from "dotenv";
 
-const { Pool, types } = pkg;
+dotenv.config();
 
-// Convert PostgreSQL NUMERIC to JavaScript Number
-types.setTypeParser(1700, (value) => parseFloat(value));
+const { Pool } = pg;
 
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "sherehe",
-  password: "admin123",
-  port: 5432,
-});
-
-// Test connection
-pool
-  .connect()
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});pool.connect()
   .then((client) => {
-    console.log("Connected to PostgreSQL");
+    console.log("✅ Connected to Supabase PostgreSQL");
     client.release();
   })
   .catch((error) => {
-    console.error(" Database connection failed:", error.message);
+    console.error("❌ Database connection failed:", error.message);
   });
+
+
 
 export default pool;

@@ -40,16 +40,16 @@ export default function Dashboard() {
   const [payments, setPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const API = process.env.NEXT_PUBLIC_API_URL;
+  const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   const fetchDashboardData = async () => {
     setLoading(true);
     try {
       const [statsRes, organizersRes, eventsRes, paymentsRes] = await Promise.all([
-        fetch(`${API}/api/admin/stats`),
-        fetch(`${API}/api/admin/organizers/pending`),
-        fetch(`${API}/api/events`),
-        fetch(`${API}/api/admin/payments/recent`),
+        fetch(`/api/admin/stats`),
+        fetch(`/api/admin/organizers/pending`),
+        fetch(`/api/events`),
+        fetch(`/api/admin/payments/recent`),
       ]);
 
       const statsData = await statsRes.json();
@@ -70,11 +70,16 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchDashboardData();
+    const intervalId = window.setInterval(() => {
+      fetchDashboardData();
+    }, 10000);
+
+    return () => window.clearInterval(intervalId);
   }, []);
 
   const handleApproveOrganizer = async (id: number) => {
     try {
-      await fetch(`${API}/api/admin/organizers/${id}/approve`, { method: "PATCH" });
+      await fetch(`/api/admin/organizers/${id}/approve`, { method: "PATCH" });
       fetchDashboardData();
     } catch (error) {
       console.error(error);
@@ -83,7 +88,7 @@ export default function Dashboard() {
 
   const handleRejectOrganizer = async (id: number) => {
     try {
-      await fetch(`${API}/api/admin/organizers/${id}/reject`, { method: "PATCH" });
+      await fetch(`/api/admin/organizers/${id}/reject`, { method: "PATCH" });
       fetchDashboardData();
     } catch (error) {
       console.error(error);

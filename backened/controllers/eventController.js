@@ -2,17 +2,33 @@ import Event from "../models/EventModel.js";
 import Pending from "../models/PendingModel.js";
 
 export const createEvent = async (req, res) => {
-  const { title, eventDate } = req.body;
+  const { title, eventDate, eventDate: event_date, eventTime, venue, price, organizerName } = req.body;
 
-  if (!title || !eventDate) {
+  if (!title || !(eventDate || event_date)) {
     return res.status(400).json({
       success: false,
       message: "Title and date are required.",
     });
   }
 
+  if (!venue || !price || !organizerName) {
+    return res.status(400).json({
+      success: false,
+      message: "Venue, price, and organizer name are required.",
+    });
+  }
+
   try {
-    const event = await Event.create(req.body);
+    const payload = {
+      ...req.body,
+      eventDate: eventDate || event_date,
+      eventTime: eventTime || null,
+      price: Number(price),
+      organizerName: organizerName || req.body.organizer_name || null,
+      status: req.body.status || "pending",
+    };
+
+    const event = await Event.create(payload);
 
     res.status(201).json({
       success: true,

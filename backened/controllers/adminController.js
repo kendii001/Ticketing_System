@@ -1,23 +1,25 @@
 import pool from "../db.js";
 
-// Dashboard stats — total events, organizers, tickets sold, revenue
+// Dashboard stats based on the live events table
 export const getDashboardStats = async (req, res) => {
   try {
-    const eventsResult = await pool.query(`SELECT COUNT(*) FROM events`);
-    const organizersResult = await pool.query(
-      `SELECT COUNT(*) FROM organizers WHERE status = 'approved'`
-    );
-    const paymentsResult = await pool.query(
-      `SELECT COUNT(*) AS tickets_sold, COALESCE(SUM(amount), 0) AS revenue FROM payments WHERE status = 'paid'`
-    );
+    const [eventsResult, publishedEventsResult, pendingEventsResult] = await Promise.all([
+      pool.query(`SELECT COUNT(*) AS total_events FROM events`),
+      pool.query(`SELECT COUNT(*) AS published_events FROM events WHERE status = 'published'`),
+      pool.query(`SELECT COUNT(*) AS pending_events FROM events WHERE status = 'pending'`),
+    ]);
+
+    const totalEvents = parseInt(eventsResult.rows[0].total_events, 10) || 0;
+    const publishedEvents = parseInt(publishedEventsResult.rows[0].published_events, 10) || 0;
+    const pendingEvents = parseInt(pendingEventsResult.rows[0].pending_events, 10) || 0;
 
     res.json({
       success: true,
       stats: {
-        totalEvents: parseInt(eventsResult.rows[0].count, 10),
-        organizers: parseInt(organizersResult.rows[0].count, 10),
-        ticketsSold: parseInt(paymentsResult.rows[0].tickets_sold, 10),
-        revenue: parseFloat(paymentsResult.rows[0].revenue),
+        totalEvents,
+        organizers: publishedEvents,
+        ticketsSold: pendingEvents,
+        revenue: 0,
       },
     });
   } catch (error) {
@@ -26,11 +28,14 @@ export const getDashboardStats = async (req, res) => {
   }
 };
 
-// Pending organizer approvals
+// Pending organizer approvals (mapped to pending event creators from the live events table)
 export const getPendingOrganizers = async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT * FROM organizers WHERE status = 'pending' ORDER BY created_at DESC`
+      `SELECT DISTINCT organizer_name AS name, organizer_name AS email, id
+       FROM events
+       WHERE status = 'pending'
+       ORDER BY id DESC`
     );
     res.json({ success: true, organizers: result.rows });
   } catch (error) {
@@ -43,11 +48,11 @@ export const approveOrganizer = async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query(
-      `UPDATE organizers SET status = 'approved' WHERE id = $1 RETURNING *`,
+      `UPDATE events SET status = 'published' WHERE id = $1 RETURNING *`,
       [id]
     );
     if (result.rows.length === 0) {
-      return res.status(404).json({ success: false, message: "Organizer not found." });
+      return res.status(404).json({ success: false, message: "Event not found." });
     }
     res.json({ success: true, organizer: result.rows[0] });
   } catch (error) {
@@ -60,11 +65,11 @@ export const rejectOrganizer = async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query(
-      `UPDATE organizers SET status = 'rejected' WHERE id = $1 RETURNING *`,
+      `UPDATE events SET status = 'rejected' WHERE id = $1 RETURNING *`,
       [id]
     );
     if (result.rows.length === 0) {
-      return res.status(404).json({ success: false, message: "Organizer not found." });
+      return res.status(404).json({ success: false, message: "Event not found." });
     }
     res.json({ success: true, organizer: result.rows[0] });
   } catch (error) {
@@ -77,7 +82,10 @@ export const rejectOrganizer = async (req, res) => {
 export const getPendingEvents = async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT * FROM events WHERE status = 'pending' ORDER BY created_at DESC`
+      `SELECT id, title, organizer_name, event_date, venue, status
+       FROM events
+       WHERE status = 'pending'
+       ORDER BY created_at DESC`
     );
     res.json({ success: true, events: result.rows });
   } catch (error) {
@@ -120,15 +128,13 @@ export const rejectEvent = async (req, res) => {
   }
 };
 
-// Recent payments
+// Recent events for dashboard
 export const getRecentPayments = async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT p.id, p.amount, p.status, p.created_at, c.name AS customer_name, e.title AS event_title
-       FROM payments p
-       JOIN customers c ON p.customer_id = c.id
-       JOIN events e ON p.event_id = e.id
-       ORDER BY p.created_at DESC
+      `SELECT id, title AS event_title, status, created_at, organizer_name AS customer_name, price AS amount
+       FROM events
+       ORDER BY created_at DESC
        LIMIT 10`
     );
     res.json({ success: true, payments: result.rows });

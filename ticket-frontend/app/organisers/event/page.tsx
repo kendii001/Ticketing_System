@@ -56,7 +56,7 @@ export default function OrganizerEventsPage() {
           </div>
 
           <Link
-            href="/organizer/events/create"
+            href="/organisers/event/create"
             className="flex items-center gap-2 bg-[#CC338B] text-white px-5 py-3 rounded-lg hover:bg-pink-700 transition"
           >
             <Plus size={20} />
@@ -133,7 +133,7 @@ export default function OrganizerEventsPage() {
                 <div className="flex justify-between mt-6">
 
                   <Link
-                    href={`/organizer/events/${event.id}/edit`}
+                    href={`/organisers/event/${event.id}/edit`}
                     className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
                   >
                     <Pencil size={18} />

@@ -7,7 +7,6 @@ export default function CreateEventPage() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
-  const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   const [event, setEvent] = useState({
     title: "",
@@ -38,7 +37,7 @@ export default function CreateEventPage() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API}/api/events`, {
+      const response = await fetch(`/api/events`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

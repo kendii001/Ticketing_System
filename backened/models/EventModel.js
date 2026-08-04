@@ -11,6 +11,7 @@ const Event = {
     price,
     organizerName,
     imageUrl,
+    created_at,
     status,
   }) {
     const result = await pool.query(
@@ -49,8 +50,16 @@ const Event = {
     }
 
     if (status) {
-      query += ` AND status = $${i++}`;
-      values.push(status);
+      const statuses = Array.isArray(status) ? status : [status];
+
+      if (statuses.length === 1) {
+        query += ` AND status = $${i++}`;
+        values.push(statuses[0]);
+      } else {
+        const placeholders = statuses.map(() => `$${i++}`).join(", ");
+        query += ` AND status IN (${placeholders})`;
+        values.push(...statuses);
+      }
     }
 
     query += ` ORDER BY created_at DESC`;

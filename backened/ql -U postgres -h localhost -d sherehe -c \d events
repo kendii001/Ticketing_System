@@ -1,0 +1,18 @@
+                                          Table "public.events"
+     Column     |            Type             | Collation | Nullable |              Default               
+----------------+-----------------------------+-----------+----------+------------------------------------
+ id             | integer                     |           | not null | nextval('events_id_seq'::regclass)
+ title          | character varying(255)      |           | not null | 
+ description    | text                        |           |          | 
+ category       | character varying(100)      |           |          | 
+ event_date     | date                        |           | not null | 
+ event_time     | time without time zone      |           |          | 
+ venue          | character varying(255)      |           |          | 
+ price          | numeric(10,2)               |           |          | 0
+ organizer_name | character varying(255)      |           |          | 
+ image_url      | text                        |           |          | 
+ status         | character varying(50)       |           |          | 'pending'::character varying
+ created_at     | timestamp without time zone |           |          | CURRENT_TIMESTAMP
+Indexes:
+    "events_pkey" PRIMARY KEY, btree (id)
+

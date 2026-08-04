@@ -15,12 +15,12 @@ export default function PendingEventsPage() {
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+  const API = "";
 
   const fetchPending = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${API}/api/events/pending`);
+      const res = await fetch(`/api/admin/events/pending`);
       const data = await res.json();
       if (data.success) setEvents(data.events);
     } catch (error) {
@@ -32,15 +32,20 @@ export default function PendingEventsPage() {
 
   useEffect(() => {
     fetchPending();
+    const intervalId = window.setInterval(() => {
+      fetchPending();
+    }, 10000);
+
+    return () => window.clearInterval(intervalId);
   }, []);
 
   const handleApprove = async (id: number) => {
-    await fetch(`${API}/api/events/${id}/approve`, { method: "PATCH" });
+    await fetch(`/api/admin/events/${id}/approve`, { method: "PATCH" });
     fetchPending();
   };
 
   const handleReject = async (id: number) => {
-    await fetch(`${API}/api/events/${id}/reject`, { method: "PATCH" });
+    await fetch(`/api/admin/events/${id}/reject`, { method: "PATCH" });
     fetchPending();
   };
 
