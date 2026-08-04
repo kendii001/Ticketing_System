@@ -1,17 +1,30 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://ticketing-system-n41q.onrender.com";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://ticketing-system-n41q.onrender.com";
 
-export const getEvents = async (params?: URLSearchParams | string) => {
-  const queryString = params ? `?${params.toString()}` : "";
-  const fullUrl = `${API_URL}/api/events${queryString}`;
+export const getEvents = async (
+  params?: URLSearchParams | string
+) => {
+  let queryString = "";
 
-  // Log to check client-side evaluation
-  console.log("Fetching URL:", fullUrl);
-
-  const response = await fetch(fullUrl);
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch events: ${response.statusText}`);
+  if (params) {
+    queryString =
+      typeof params === "string"
+        ? `?${params}`
+        : `?${params.toString()}`;
   }
 
-  return response.json();
+  const response = await fetch(
+    `${API_URL}/api/events${queryString}`
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      data.message || "Failed to fetch events."
+    );
+  }
+
+  return data;
 };
