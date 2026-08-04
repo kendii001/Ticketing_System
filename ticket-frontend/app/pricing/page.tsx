@@ -4,17 +4,21 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/navbar";
 
 interface PricingData {
-  id: number;
-  country: string;
-  currency: string;
-  service_fee: number;
-  marketplace_fee: number;
-  bank_transfer_fee: number;
-  mobile_money_fee: number;
-  updated_at: string;
+  id?: number;
+  country?: string;
+  currency?: string;
+  service_fee?: number | string;
+  marketplace_fee?: number | string;
+  bank_transfer_fee?: number | string;
+  mobile_money_fee?: number | string;
+  updated_at?: string;
 }
 
 const countries = ["Kenya", "Uganda", "Tanzania", "Nigeria", "South Africa", "USA"];
+
+const getApiBaseUrl = () => {
+  return "";
+};
 
 export default function Pricing() {
   const [country, setCountry] = useState("Kenya");
@@ -23,9 +27,10 @@ export default function Pricing() {
   const [errorMessage, setErrorMessage] = useState("");
   const [amount, setAmount] = useState("");
   const [calculation, setCalculation] = useState<{
-    amount: number;
-    platform_fee: number;
-    organizer_payout: number;
+    amount?: number;
+    platform_fee?: number;
+    organizer_payout?: number;
+    currency?: string;
   } | null>(null);
   const [calculating, setCalculating] = useState(false);
 
@@ -34,8 +39,7 @@ export default function Pricing() {
       setLoading(true);
       setErrorMessage("");
 
-      const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
-      const apiUrl = apiBaseUrl ? `${apiBaseUrl}/pricing/${encodeURIComponent(country)}` : `/pricing/${encodeURIComponent(country)}`;
+      const apiUrl = `/api/pricing/${encodeURIComponent(country)}`;
 
       try {
         const response = await fetch(apiUrl);
@@ -69,8 +73,7 @@ export default function Pricing() {
     try {
       setCalculating(true);
 
-      const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
-      const apiUrl = apiBaseUrl ? `${apiBaseUrl}/pricing/calculate` : "/pricing/calculate";
+      const apiUrl = `/api/pricing/calculate`;
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -141,27 +144,27 @@ export default function Pricing() {
               <tbody>
                 <tr className="border-b border-gray-200">
                   <td className="px-6 py-4 font-medium">Storefront Service Fee</td>
-                  <td className="px-6 py-4">{pricing.service_fee}%</td>
+                  <td className="px-6 py-4">{pricing.service_fee ?? "-"}%</td>
                 </tr>
 
                 <tr className="border-b border-gray-200">
                   <td className="px-6 py-4 font-medium">Marketplace Service Fee</td>
                   <td className="px-6 py-4">
-                    {pricing.currency} {pricing.marketplace_fee}
+                    {pricing.currency ?? ""} {pricing.marketplace_fee ?? "-"}
                   </td>
                 </tr>
 
                 <tr className="border-b border-gray-200">
                   <td className="px-6 py-4 font-medium">Bank Transfer Charges</td>
                   <td className="px-6 py-4">
-                    {pricing.currency} {pricing.bank_transfer_fee}
+                    {pricing.currency ?? ""} {pricing.bank_transfer_fee ?? "-"}
                   </td>
                 </tr>
 
                 <tr>
                   <td className="px-6 py-4 font-medium">Mobile Money Transfer Charges</td>
                   <td className="px-6 py-4">
-                    {pricing.currency} {pricing.mobile_money_fee}
+                    {pricing.currency ?? ""} {pricing.mobile_money_fee ?? "-"}
                   </td>
                 </tr>
               </tbody>
@@ -211,14 +214,14 @@ export default function Pricing() {
                 <div className="flex justify-between py-2">
                   <span>Platform Fee</span>
                   <span>
-                    {pricing?.currency} {calculation.platform_fee}
+                    {(calculation.currency || pricing?.currency || "")} {calculation.platform_fee ?? "-"}
                   </span>
                 </div>
 
                 <div className="flex justify-between py-2 font-bold text-green-700">
                   <span>Organizer Payout</span>
                   <span>
-                    {pricing?.currency} {calculation.organizer_payout}
+                    {(calculation.currency || pricing?.currency || "")} {calculation.organizer_payout ?? "-"}
                   </span>
                 </div>
               </div>

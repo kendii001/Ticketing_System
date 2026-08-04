@@ -42,9 +42,16 @@ export const fetchPricingByCountry = async (req, res) => {
     });
   }
 };
+
 export const calculatePricing = async (req, res) => {
   try {
     const { country, amount } = req.body;
+
+    if (!country || amount === undefined || amount === null || Number(amount) <= 0) {
+      return res.status(400).json({
+        message: "Please provide a valid country and amount.",
+      });
+    }
 
     const calculation = await calculatePricingData(country, amount);
 
@@ -61,9 +68,5 @@ export const calculatePricing = async (req, res) => {
     res.status(500).json({
       message: "Server error.",
     });
-
-
-
-
   }
 };

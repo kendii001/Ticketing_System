@@ -26,7 +26,7 @@ export const getPricingByCountry = async (country) => {
 export const calculatePricingData = async (country, amount) => {
   const result = await pool.query(
     `
-    SELECT service_fee
+    SELECT country, currency, service_fee, marketplace_fee, bank_transfer_fee, mobile_money_fee
     FROM country_pricing
     WHERE LOWER(country) = LOWER($1)
     `,
@@ -37,14 +37,17 @@ export const calculatePricingData = async (country, amount) => {
     return null;
   }
 
-  const serviceFee = Number(result.rows[0].service_fee);
+  const pricing = result.rows[0];
+  const serviceFee = Number(pricing.service_fee);
+  const amountValue = Number(amount);
 
-  const platformFee = (Number(amount) * serviceFee) / 100;
-  const organizerAmount = Number(amount) - platformFee;
+  const platformFee = (amountValue * serviceFee) / 100;
+  const organizerAmount = amountValue - platformFee;
 
   return {
-  amount: Number(amount),
-  platform_fee: platformFee,
-  organizer_payout: organizerAmount,
-};
+    amount: amountValue,
+    platform_fee: platformFee,
+    organizer_payout: organizerAmount,
+    currency: pricing.currency,
+  };
 };

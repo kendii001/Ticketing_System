@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { createContact } from "../services/contactService";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -26,26 +27,16 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation();
 
     setLoading(true);
     setSuccessMessage("");
     setErrorMessage("");
 
-    const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
-    const contactUrl = apiBaseUrl ? `${apiBaseUrl}/api/contact` : "/api/contact";
-
     try {
-      const res = await fetch(contactUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const data = await createContact(formData);
 
-      const data = await res.json();
-
-      if (res.ok && data.success) {
+      if (data.success) {
         setSuccessMessage("✅ Message sent successfully!");
         setFormData({
           fullName: "",
@@ -53,11 +44,16 @@ export default function ContactPage() {
           message: "",
         });
       } else {
-        setErrorMessage(data.message || "Failed to send message.");
+        setErrorMessage(data.message || "Unable to send your message.");
       }
     } catch (error) {
       console.error("Contact form submission failed:", error);
-      setErrorMessage("Unable to connect to the server. Please check the API configuration.");
+
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Unable to connect to the server."
+      );
     } finally {
       setLoading(false);
     }

@@ -15,7 +15,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "http://192.168.1.199:3000",
+      "http://localhost:5000",
       "https://ticketing-system.vercel.app",
       "https://www.ticketing-system.vercel.app",
     ],
