@@ -14,11 +14,11 @@ interface PricingData {
   updated_at?: string;
 }
 
-const countries = ["Kenya", "Uganda", "Tanzania", "Nigeria", "South Africa", "USA"];
-
+const countries = ["Kenya", "Uganda", "Tanzania", "Nigeria", "South Africa"];
 const getApiBaseUrl = () => {
-  return "";
+  return process.env.NEXT_PUBLIC_API_URL || "";
 };
+
 
 export default function Pricing() {
   const [country, setCountry] = useState("Kenya");
@@ -39,8 +39,8 @@ export default function Pricing() {
       setLoading(true);
       setErrorMessage("");
 
-      const apiUrl = `/api/pricing/${encodeURIComponent(country)}`;
-
+      
+const apiUrl = `${getApiBaseUrl()}/api/pricing/${encodeURIComponent(country)}`;
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -72,8 +72,8 @@ export default function Pricing() {
 
     try {
       setCalculating(true);
-
-      const apiUrl = `/api/pricing/calculate`;
+const apiUrl = `${getApiBaseUrl()}/api/pricing/calculate`;
+      
 
       const response = await fetch(apiUrl, {
         method: "POST",
